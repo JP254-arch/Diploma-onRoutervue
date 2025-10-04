@@ -22,15 +22,20 @@
 
 <script setup>
 import { ref, onMounted } from "vue"
-import Loader from "../components/Loader.vue"
+import Loader from "../components/LoaderComponent.vue"
 
+// State
 const vehicles = ref([])
 const loading = ref(true)
 const error = ref(null)
 
+// Use environment variable or default to localhost:3000
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
+
+// Fetch vehicles
 const fetchVehicles = async () => {
   try {
-    const res = await fetch("https://fakestoreapi.com/products") // API returns the data you showed
+    const res = await fetch(`${API_URL}/vehicles`)
     if (!res.ok) throw new Error("Failed to fetch vehicles")
     vehicles.value = await res.json()
   } catch (err) {
@@ -66,13 +71,13 @@ onMounted(fetchVehicles)
   background: #ffffff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .vehicle-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .vehicle-image {

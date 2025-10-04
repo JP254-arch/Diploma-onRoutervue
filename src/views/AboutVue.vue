@@ -11,7 +11,7 @@
       <div class="about-image">
         <img :src="about.image.src" :alt="about.image.alt" />
         <!-- Extra text directly under image -->
-        <p class="extra-text">{{ about.extraText }}</p>
+        <p class="extra-text" style="font-family: sans-serif; color: blue;">{{ about.extraText }}</p>
       </div>
     </div>
 
@@ -89,8 +89,8 @@
   }
 
   .about-text h2 {
-    font-size: 2.5rem;
-    color: #1e293b;
+    font-size: medium-large;
+    color: #259fb4;
     margin-bottom: 20px;
     font-weight: 700;
   }
@@ -128,8 +128,8 @@
   }
 
   .core-values-section h2 {
-    font-size: 2rem;
-    color: #1e293b;
+    font-size: medium-large;
+    color: #0f6185;
     margin-bottom: 20px;
   }
 
@@ -170,7 +170,7 @@
     }
 
     .core-values img {
-      width: 70px;
+      width: 60px;
     }
   }
 </style>

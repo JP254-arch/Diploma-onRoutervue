@@ -2,6 +2,11 @@
   <footer class="footer">
     <div class="footer-container">
       <p>© 2025 My Vue App | All Rights Reserved</p>
+       <p>
+        This site and the products and services offered on this site are not associated, affiliated, endorsed. All
+        trademarks, logos, and service marks (collectively "Trademarks") displayed are registered and/or unregistered
+        Trademarks of their respective owners.
+      </p>
       <ul class="footer-links">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About</router-link></li>
@@ -18,7 +23,10 @@
     background: #000;
     color: white;
     padding: 20px;
+    border-radius: 25px;
+
   }
+
 
   .footer-container {
     display: flex;
@@ -34,6 +42,7 @@
   .footer p {
     margin: 0;
     font-size: 0.9rem;
+    color: #256bc1;
   }
 
   /* Footer links */
@@ -53,7 +62,8 @@
   }
 
   .footer-links a:hover {
-    color: #38bdf8;
+    color: #11a9ea;
+    text-decoration: wavy underline;
   }
 
   /* ✅ On small screens, links stay centered but can wrap */
