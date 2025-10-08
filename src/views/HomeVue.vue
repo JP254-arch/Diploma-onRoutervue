@@ -106,6 +106,7 @@ const topCars = [
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s;
+  background-color: rgb(86, 192, 219);
 }
 
 .feature-card:hover {
@@ -140,6 +141,7 @@ const topCars = [
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
 }
 
 .car-card:hover {
