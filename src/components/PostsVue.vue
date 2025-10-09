@@ -3,7 +3,11 @@
     <h1 class="page-title">Vehicle List</h1>
 
     <!-- Success Message -->
-    <div v-if="successMessage" class="success-msg">{{ successMessage }}</div>
+    <transition name="fade">
+      <div v-if="successMessage" class="success-msg">
+        {{ successMessage }}
+      </div>
+    </transition>
 
     <!-- Vehicle cards -->
     <div class="vehicle-grid">
@@ -69,10 +73,10 @@ export default {
       try {
         if (this.editId) {
           await axios.put(`http://localhost:3000/vehicles/${this.editId}`, this.form);
-          this.successMessage = "Vehicle updated successfully!";
+          this.successMessage = "✅ Vehicle updated successfully!";
         } else {
           await axios.post("http://localhost:3000/vehicles", this.form);
-          this.successMessage = "Vehicle added successfully!";
+          this.successMessage = "🚗 Vehicle added successfully!";
         }
 
         this.form = { title: "", description: "", price: null, image: "" };
@@ -94,7 +98,7 @@ export default {
     async deleteVehicle(id) {
       try {
         await axios.delete(`http://localhost:3000/vehicles/${id}`);
-        this.successMessage = "Vehicle deleted successfully!";
+        this.successMessage = "❌ Vehicle deleted successfully!";
         this.fetchVehicles();
         setTimeout(() => (this.successMessage = ""), 3000);
       } catch (err) {
@@ -110,23 +114,36 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .page-title {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #222;
+  font-size: 28px;
+  font-weight: bold;
 }
 
+/* Success Message with animation */
 .success-msg {
   text-align: center;
   background-color: #4caf50;
   color: #fff;
-  padding: 10px 0;
+  padding: 12px 18px;
   margin-bottom: 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 /* Vehicle grid */
@@ -139,7 +156,7 @@ export default {
 
 .vehicle-card {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
@@ -186,6 +203,7 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.2s ease;
 }
 
 .edit-btn {
@@ -206,42 +224,66 @@ export default {
   background-color: #e53935;
 }
 
-/* Form */
+/* Stylish Form */
 .vehicle-form {
-  background: #f7f7f7;
-  padding: 20px;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #f0f4f8, #ffffff);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.vehicle-form:hover {
+  transform: translateY(-3px);
 }
 
 .vehicle-form h2 {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .vehicle-form form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .vehicle-form input {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+  outline: none;
 }
 
+.vehicle-form input:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 6px rgba(33,150,243,0.3);
+  background-color: #fdfdfd;
+}
+
+/* Submit Button */
 .submit-btn {
-  background-color: #2196f3;
+  background: linear-gradient(135deg, #2196f3, #1976d2);
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border-radius: 5px;
+  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
 }
 
 .submit-btn:hover {
-  background-color: #1976d2;
+  background: linear-gradient(135deg, #42a5f5, #1565c0);
+  transform: scale(1.03);
 }
 
 .submit-btn:disabled {
